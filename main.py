@@ -1,7 +1,6 @@
 from tkinter import *
 
-row1 = 3
-borderW = 3
+numbersRow = 3
 # bg = "gray"
 bg = "#999999"
 
@@ -9,15 +8,16 @@ root = Tk()
 root.title("Solving Equations")
 root.configure(bg=bg)
 
-def createLabel(text, row, column, fg='blue'):
+
+def createSign(text, column, fg='blue'):
     Label(root, text=text, font="Helvetica 44 bold",
-          fg=fg, bg=bg).grid(row=row, column=column)
+          fg=fg, bg=bg).grid(row=numbersRow, column=column)
 
 
-def createEntry(row, column):
+def createNumberEntry(column, borderW=3):
     e = Entry(root, width=5, borderwidth=borderW,
               font="Helvetica 44 bold", justify='center', bg="yellow")
-    e.grid(row=row, column=column)
+    e.grid(row=numbersRow, column=column)
     return e
 
 
@@ -25,39 +25,39 @@ Label(root, text="     ", bg=bg).grid(row=0, column=0)
 Label(root, text="     ", bg=bg).grid(row=1, column=0)
 
 # ------------------------------ left side ------------------------------
-e1 = createEntry(row1, 1)
+e1 = createNumberEntry(1)
 e1.insert(0, "x6")
 
-createLabel("+", row1, 2)
+createSign("+", 2)
 
-e2 = createEntry(row1, 3)
+e2 = createNumberEntry(3)
 e2.insert(0, "-20")
 
-createLabel("+", row1, 4)
+createSign("+", 4)
 
-e3 = createEntry(row1, 5)
+e3 = createNumberEntry(5)
 e3.insert(0, "x7")
 # ------------------------------ left side end ------------------------------
 
-createLabel("=", row1, 6, 'red')
+createSign("=", 6, 'red')
 
 # ------------------------------ right side ------------------------------
-e4 = createEntry(row1, 7)
+e4 = createNumberEntry(7)
 e4.insert(0, "10")
 
-createLabel("+", row1, 8)
+createSign("+", 8)
 
-e5 = createEntry(row1, 9)
+e5 = createNumberEntry(9)
 e5.insert(0, "-50")
 
-createLabel("+", row1, 10)
+createSign("+", 10)
 
-e6 = createEntry(row1, 11)
+e6 = createNumberEntry(11)
 e6.insert(0, "-x4")
 # ------------------------------ right side end ------------------------------
 
 
-Label(root, text='     ', bg=bg).grid(row=row1, column=12)
+Label(root, text='     ', bg=bg).grid(row=numbersRow, column=12)
 
 xs = 0
 numbers = 0
@@ -135,8 +135,8 @@ def findSolution():
     myLabelS.config(text="x = " + solution)
 
 
-Label(root, text="     ", bg=bg).grid(row=row1+1, column=0)
-Label(root, text="     ", bg=bg).grid(row=row1+2, column=0)
+Label(root, text="     ", bg=bg).grid(row=numbersRow+1, column=0)
+Label(root, text="     ", bg=bg).grid(row=numbersRow+2, column=0)
 
 solveButton = Button(root, text="Solve", padx=100, pady=10, font="Helvetica 42 bold",
                      fg="white", bg="gray", command=findSolution)
@@ -151,7 +151,6 @@ myLabelS.grid(row=9, column=1, columnspan=12)
 
 Label(root, bg=bg).grid(row=10, column=0)
 Label(root, bg=bg).grid(row=11, column=0)
-
 
 
 def calculate():
